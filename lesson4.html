@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Vue tutorial</title>
+    </head>
+    <body>
+        <div id="root">
+            <ul>
+                <li v-for="name in names">{{ name }}</li>
+                <hr>
+                <li v-for="name2 in names" v-text="name2"></li>
+            </ul>
+            <input id="input" type="text" v-model="newName">
+            <button id="button" v-on:click="addName">Add Name</button>
+            <button id="button2" @click="addName">Add Name</button>
+        </div>
+
+        <script src="https://unpkg.com/vue/dist/vue.js"></script>
+        <script>
+            var app = new Vue({
+                el: '#root',
+                data: {
+                    newName: '',
+                    names : ['Jose', 'JM', 'Dani']
+                },
+                methods: {
+                    // this is equivalent to --> addName: function () {
+                    addName() {
+                        //data is "proxied" to this
+                        this.names.push(this.newName);
+                        //clear the field just using reactivity
+                        this.newName = '';
+                    }
+                },
+                mounted() {
+                }
+            });
+        </script>
+    </body>
+</html> 

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Vue tutorial</title>
+    </head>
+    <body>
+        <div id="root">
+            <ul>
+                <li v-for="name in names">{{ name }}</li>
+                <hr>
+                <li v-for="name2 in names" v-text="name2"></li>
+            </ul>
+            <input id="input" type="text">
+            <button id="button">Add Name</button>
+        </div>
+
+        <script src="https://unpkg.com/vue/dist/vue.js"></script>
+        <script>
+            var app = new Vue({
+                el: '#root',
+                data: {
+                    names : ['Jose', 'JM', 'Dani']
+                },
+
+                mounted() {
+                    alert('ready');
+                    //next lesson, move stuff here (similar to dom.ready())
+                }
+            });
+            /**
+             * Step 1: run this in JS console:
+             * 
+             * app.names.push('Gus');
+             */
+
+            /**
+             * Step 2: run this in JS console:
+             * 
+             
+            document.querySelector('#button').addEventListener('click', () => {
+                let name = document.querySelector('#input');
+                app.names.push(name.value);
+                name.value = '';
+            });
+            */
+        </script>
+    </body>
+</html> 

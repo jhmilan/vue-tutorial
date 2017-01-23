@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <div id="root">
+            <h1>{{ reversedMessage }}</h1>
+            <h1>{{ message.split('').reverse().join('') }}</h1>
+            <h1>All tasks</h1>
+            <ul>
+                <li v-for="task in tasks" v-text="task.description"></li>
+            </ul>
+            <h1>Completed tasks</h1>
+            <ul>
+                <li v-for="task in tasks" v-if="task.completed" v-text="task.description"></li>
+            </ul>
+            <h1>Incomplete tasks</h1>
+            <ul>
+                <li v-for="task in incompletedTasks" v-text="task.description"></li>
+            </ul>
+        </div>
+
+        <script src="https://unpkg.com/vue/dist/vue.js"></script>
+        <script>
+            var app = new Vue({
+                el: '#root',
+                data: {
+                    message: 'Da message',
+                    tasks: [
+                        { description: 'Step 1', completed: true },
+                        { description: 'Step 2', completed: false },
+                        { description: 'Step 3', completed: false },
+                        { description: 'Step 4', completed: false },
+                        { description: 'Step 5', completed: false },
+                        { description: 'Step 6', completed: true }
+                    ]
+                },
+                computed: {
+                    reversedMessage() {
+                        return this.message.split('').reverse().join('');
+                    },
+                    incompletedTasks() {
+                        return this.tasks.filter(task => ! task.completed);
+                        /*
+                            return this.tasks.filter(function(task) {
+                                return ! task.completed.
+                            });
+                        */
+                    }
+                }
+            });
+        </script>
+    </body>
+</html> 
