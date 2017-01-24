@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.3.1/css/bulma.css">
+        <style>
+            body { padding-top: 40px; }
+        </style>
+    </head>
+    <body>
+        <div id="root" class="container">
+            <!--
+            We could use the typical bootstrap structure (Emmet ul#tabs>li*4>a[href=#]<tab>)
+            <ul id="tabs">
+                <li><a href="#">About</a></li>
+                <li><a href="#">About something</a></li>
+                <li><a href="#">About 3</a></li>
+                <li><a href="#">About whatever</a></li>
+            </ul>
+            -->
+            <tabs>
+                <tab name="Home" :selected="true">
+                    <h1>Home</h1>
+                </tab>
+                <tab name="Pricing">
+                    <h1>Pricing</h1>
+                </tab>
+                <tab name="About us">
+                    <h1>About Us</h1>
+                </tab>
+            </tabs>
+        </div>
+
+        <script src="https://unpkg.com/vue/dist/vue.js"></script>
+        <script src="js/main-11.js"></script>
+    </body>
+</html> 
