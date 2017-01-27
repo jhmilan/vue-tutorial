@@ -103,6 +103,8 @@ class Form {
         for (let field in this.originalData) {
             this[field] = '';
         }
+
+        this.errors.clear();
     }
     
     /**
@@ -111,7 +113,7 @@ class Form {
      * @param  {string} url
      */
     post(url) {
-        this.submit('post', url);
+        return this.submit('post', url);
     }
 
     /**
@@ -121,32 +123,41 @@ class Form {
      * @param {string} url
      */
     submit(requestType, url) {
-        this.isLoading = true;
-        //don't forget to bind this in the promise's handlers (then/catch)
-        axios[requestType](url, this.data())
-            .then(this.onSuccess.bind(this))
-            .catch(this.onFail.bind(this));
-        this.isLoading = false;
+        return new Promise((resolve, reject) => {
+            this.isLoading = true;
+            axios[requestType](url, this.data())
+                .then(response => {
+                    this.onSuccess(response.data);
+
+                    resolve(response.data);
+                })
+                .catch(error => {
+                    this.onFail(error.response.data);
+
+                    reject(error.response.data); 
+                });
+            this.isLoading = false;
+        });
     }
 
     /**
      * Handle a successful form submission
      * 
-     * @param {object} response
+     * @param {object} data
      */
-    onSuccess(response) {
-        alert(response.data.message);
-        this.errors.clear();
+    onSuccess(data) {
+        alert(data.message);
+
         this.reset();
     }
 
     /**
      * Handle a failed form submission
      * 
-     * @param {object} response
+     * @param {object} errors
      */
-    onFail(error) {
-        this.errors.record(error.response.data);
+    onFail(errors) {
+        this.errors.record(errors);
     }
 }
 
@@ -162,7 +173,9 @@ var app = new Vue({
 
     methods: {
         onSubmit() {
-            this.form.post('/projects');
+            this.form.post('/projects')
+                .then(data => console.log(data))
+                .catch(errors => console.log(errors));
         },
 
         onSuccess(response) {
