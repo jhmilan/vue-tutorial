@@ -2,6 +2,20 @@
 
 This is just a compilation of examples based on the awesome [Laracasts series about Vue 2](https://laracasts.com/series/learn-vue-2-step-by-step)
 
+### Lesson 26. Vue routing
+As Jeffrey explaing we could use any other backend but we are using laravel. In our case:
+
+```
+cd laravel-lessons
+laravel new lesson26
+```
+
+By the time we run this (Jan, 30 2016) we pulled L5.4 then we edited `./laravel-lessons/lesson26/package.json` and remove some dependecies.
+
+Notice that we are not copying the `./laravel-lessons/lesson26/node_modules/laravel-mix/setup/webpack.config.js` because we are using a merge approach following [this guide](https://laravel.com/docs/5.4/mix#custom-webpack-configuration). In case we need to override some webpack config we'll go for `mix.webpackConfig({})`
+
+
+
 ### Lesson 23. Laravel Mix
 
 Think about Laravel Mix as an Elixir replacement (Elixir + Gulp was the pre-5.3 combo to manage assets in Laravel). Laravel Mix is a configuration layer on top of webpack. In case you want to customize your webpack configuration:
