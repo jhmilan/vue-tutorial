@@ -2,6 +2,19 @@
 
 This is just a compilation of examples based on the awesome [Laracasts series about Vue 2](https://laracasts.com/series/learn-vue-2-step-by-step)
 
+### Lesson 27. SPA and Backend
+Some stuff than we run in the console
+
+```
+php artisan make:model Status -m
+#change .env so DB_CONNECTION is sqlite, then
+touch database/database.sqlite
+php artisan tinker
+#use tinker to create some data in the deatabase
+npm install moment --save
+```
+
+
 ### Lesson 26. Vue routing
 As Jeffrey explaing we could use any other backend but we are using laravel. In our case:
 
